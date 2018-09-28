@@ -5,7 +5,8 @@ function Game(){
   var self = this;
 
   self.score = 0;
-  self.time;
+  self.timer = null;
+  self.onGameOverCallback = null;
 }
 
 Game.prototype.start = function (){
@@ -15,11 +16,11 @@ Game.prototype.start = function (){
     <main class="game container">
       <header>
         <div class="score">
-          <p class="label">Score: <span class="value"></span>
-          </p>
+          <span class="label">Score: </span>
+          <span class="value"></span>
         <div class="timer">
-          <p class="label">Time: <span class="value"></span>
-          </p>
+          <span class="label">Time:  </span>
+          <span class="value"></span>
         </div>
       </header>
       <div class="game-board">
@@ -27,17 +28,18 @@ Game.prototype.start = function (){
     </main>
   `)
   
-  self.scoreElement = self.gameMain.querySelector('.score span');
-  self.timerElement = self.gameMain.querySelector('.timer span');
+  self.scoreElement = self.gameMain.querySelector('.score .value');
+  self.timerElement = self.gameMain.querySelector('.timer .value');
   self.button = self.gameMain.querySelector('button')
   self.boardElement = self.gameMain.querySelector('div.game-board');
 
-  //event listener para que reconozca los clicks en el documento - ¿¿Debería ir en la tabla??
+  //event listener para que reconozca los clicks - ¿¿Debería ir en el document??
   //self.boardElement.addEventListener('click', killDora);
 
   document.body.appendChild(self.gameMain);
-  
+  self.startTimer();
 }
+
 
 /* falta como añadir la tabla al DOM => Crear una tabla en html con el loop
 Game.prototype.buildBoard = function (){
@@ -49,6 +51,26 @@ Game.prototype.buildBoard = function (){
     }
   }
 }*/
+
+Game.prototype.startTimer = function(){
+  var self = this;
+  self.timer = 2;
+  self.timerElement.innerText = self.timer;
+  self.intervalID = setInterval(function() {
+    self.timer --;
+    self.timerElement.innerText = self.timer;
+    if(self.timer === 0){
+      clearInterval(self.intervalID);
+      self.onGameOverCallback();   
+    }
+  },1000)
+}
+
+Game.prototype.onOver = function (callback) {
+  var self = this;
+
+  self.onGameOverCallback = callback;
+};
 
 Game.prototype.destroy = function(){
   var self = this;

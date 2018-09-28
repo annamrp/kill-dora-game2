@@ -10,10 +10,11 @@ function main(){
  
   var splashMain;
   var gameOverMain;
+  var game;
 
   function buildSplash(){
 
-   //destroyGameOver();
+   destroyGameOver();
 
     splashMain = buildDom(`
       <main>
@@ -33,17 +34,23 @@ function main(){
   function buildGame(){
     destroySplash()
 
-    var game = new Game();
+    game = new Game();
     game.start();
-
+    game.onOver(function (){
+      gameOver(game.score);
+    });
   }
 
   function destroyGame(){
     game.destroy();
   }
 
-  /*
-  function buildGameOver(){
+  function gameOver(score){
+    destroyGame();
+    buidlGameOver(score);
+  }
+  
+  function buidlGameOver(score){
     gameOverMain = buildDom(`
       <main>
         <h1>Game Over</h1>
@@ -51,17 +58,19 @@ function main(){
         <button>Restart Game</button>
       <main>`)
     
-      document.body.appendChild(splashMain);
-      var button = splashMain.querySelector('button');
-      var span = splashMain.querySelector('span');
-      span.innerText = 'score';
+      document.body.appendChild(gameOverMain);
+      var button = gameOverMain.querySelector('button');
+      var span = gameOverMain.querySelector('span');
+      span.innerText = score;
       button.addEventListener('click', buildSplash); 
   }
 
   function destroyGameOver(){
+    if(gameOverMain){
     gameOverMain.remove();
+    }
   }
- */
+ 
   buildSplash();
 }
 
