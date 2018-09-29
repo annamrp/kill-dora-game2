@@ -2,7 +2,7 @@
 
 ## Description
 
-Juego en el que va apareciendo aleatoriamente dentro de un casillero y hay que conseguir hacer click encima antes de que desaparezca.
+Juego en el que va apareciendo un elemento aleatoriamente dentro de un casillero y hay que conseguir hacer click encima antes de que desaparezca.
 
 ## MVP (DOM - CANVAS)
 

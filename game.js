@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 //constructor del juego
-function Game(){
+function Game() {
   var self = this;
 
   self.score = 0;
@@ -9,7 +9,7 @@ function Game(){
   self.onGameOverCallback = null;
 }
 
-Game.prototype.start = function (){
+Game.prototype.start = function() {
   var self = this;
 
   self.gameMain = buildDom(`
@@ -26,54 +26,67 @@ Game.prototype.start = function (){
       <div class="game-board">
       </div>
     </main>
-  `)
-  
-  self.scoreElement = self.gameMain.querySelector('.score .value');
-  self.timerElement = self.gameMain.querySelector('.timer .value');
-  self.button = self.gameMain.querySelector('button')
-  self.boardElement = self.gameMain.querySelector('div.game-board');
+  `);
+
+  self.scoreElement = self.gameMain.querySelector(".score .value");
+  self.timerElement = self.gameMain.querySelector(".timer .value");
+  self.button = self.gameMain.querySelector("button");
+  //self.boardElement = self.gameMain.querySelector('.game-board');
 
   //event listener para que reconozca los clicks - ¿¿Debería ir en el document??
   //self.boardElement.addEventListener('click', killDora);
 
   document.body.appendChild(self.gameMain);
+
   self.startTimer();
-}
+};
 
-
-/* falta como añadir la tabla al DOM => Crear una tabla en html con el loop
-Game.prototype.buildBoard = function (){
-  self.board = new Array(3);
-  for (var x = 0; x < 3; x++){
-    self.board[x] = new Array(3);
-    for (var y = 0; y < 3; y++){
-      self.board[x][y] = null;
-    }
-  }
-}*/
-
-Game.prototype.startTimer = function(){
+Game.prototype.buildBoard = function() {
   var self = this;
-  self.timer = 2;
+
+  self.boardDiv = document.getElementsByClassName('game-board')
+  self.table = document.createElement("table");
+ 
+
+  for (self.x = 0; self.x < 3; self.x++) {
+    self.row = document.createElement("tr");
+    for (self.y = 0; self.y < 3; self.y++) {
+      self.cell = document.createElement("td");
+      self.row.appendChild(self.cell);
+    }
+    self.table.appendChild(self.row);
+  }
+  self.boardDiv.appendChild(self.table)
+
+  
+
+};
+
+
+Game.prototype.startTimer = function() {
+  var self = this;
+  self.timer = 20;
   self.timerElement.innerText = self.timer;
   self.intervalID = setInterval(function() {
-    self.timer --;
+    self.timer--;
     self.timerElement.innerText = self.timer;
-    if(self.timer === 0){
+    if (self.timer === 0) {
       clearInterval(self.intervalID);
-      self.onGameOverCallback();   
+      self.onGameOverCallback();
     }
-  },1000)
-}
+  }, 1000);
+};
 
-Game.prototype.onOver = function (callback) {
+
+
+Game.prototype.onOver = function(callback) {
   var self = this;
 
   self.onGameOverCallback = callback;
 };
 
-Game.prototype.destroy = function(){
+Game.prototype.destroy = function() {
   var self = this;
 
   self.gameMain.remove();
-}
+};
