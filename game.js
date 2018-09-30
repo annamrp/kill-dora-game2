@@ -39,15 +39,15 @@ Game.prototype.start = function() {
   document.body.appendChild(self.gameMain);
 
   self.startTimer();
+  self.buildBoard();
 };
 
 Game.prototype.buildBoard = function() {
   var self = this;
 
-  self.boardDiv = document.getElementsByClassName('game-board')
+  self.boardDiv = document.querySelector('.game-board')
   self.table = document.createElement("table");
  
-
   for (self.x = 0; self.x < 3; self.x++) {
     self.row = document.createElement("tr");
     for (self.y = 0; self.y < 3; self.y++) {
@@ -56,10 +56,8 @@ Game.prototype.buildBoard = function() {
     }
     self.table.appendChild(self.row);
   }
+
   self.boardDiv.appendChild(self.table)
-
-  
-
 };
 
 
