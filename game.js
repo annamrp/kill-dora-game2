@@ -31,7 +31,7 @@ Game.prototype.start = function() {
   self.scoreElement = self.gameMain.querySelector(".score .value");
   self.timerElement = self.gameMain.querySelector(".timer .value");
   self.button = self.gameMain.querySelector("button");
-  //self.boardElement = self.gameMain.querySelector('.game-board');
+  self.boardElement = self.gameMain.querySelector('.game-board');
 
   //event listener para que reconozca los clicks - ¿¿Debería ir en el document??
   //self.boardElement.addEventListener('click', killDora);
@@ -50,8 +50,10 @@ Game.prototype.buildBoard = function() {
  
   for (self.x = 0; self.x < 3; self.x++) {
     self.row = document.createElement("tr");
+    self.row.className = self.x
     for (self.y = 0; self.y < 3; self.y++) {
       self.cell = document.createElement("td");
+      self.cell.className = self.y;
       self.row.appendChild(self.cell);
     }
     self.table.appendChild(self.row);
