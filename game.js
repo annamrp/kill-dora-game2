@@ -43,7 +43,6 @@ Game.prototype.start = function() {
 
   self.startTimer();
   self.buildBoard();
-  //self.randomDora();
 };
 
 Game.prototype.buildBoard = function() {
@@ -75,14 +74,6 @@ Game.prototype.buildBoard = function() {
 
   self.boardDiv.appendChild(self.table);
 };
-/*
- var board = new Array(3);
-  for (var x = 0; x < 10; x++){
-    board[x] = new Array(10);
-    for(var y = 0; y < 10; y++){
-      board[x][y] = null;
-    }
-*/
 
 Game.prototype.randomDora = function() {
   var self = this;
@@ -98,18 +89,27 @@ Game.prototype.randomDora = function() {
 
 Game.prototype.showDora = function() {
   var self = this;
+
   self.randomDora();
-  //self.dora.cell.classList.toggle('show-element');
+  self.dora.cell.classList.add('show-element');
+  setTimeout(function(){
+    self.dora.cell.classList.remove('show-element');
+
+  },500)
+
+
+
+  /*
+    self.dora.cell.classList.toggle('show-element');
+  */
+ 
+ 
   
  
  
  
  
- // if (self.dora.cell.classList.contains('show-element')){
-   // self.dora.cell.classList.toggle('hide-element')
-    //self.randomDora();
-
-  //}
+ 
   
 }
 

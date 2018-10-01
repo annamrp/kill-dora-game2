@@ -32,8 +32,8 @@ DOM - Debe aparecer al menos una Dora de manera aleatoria durante unos determina
   - Game(){score,lives,time};
   - startGame();
   - buildBoard();
-  - buildDora(){position:x,y => undefined}
-  - showDora() - definir posición aleatoria y tiempo que se muestra.
+  - randomDora(){position: random}
+  - showDora() - llama a randomDora y define tiempo que se muestra.
   - killedDora() o comprobar que hay dora en la casilla. Si hay suma puntos(MVP). 
 
 
