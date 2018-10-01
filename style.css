@@ -30,6 +30,12 @@ html, body {
   }
 }
 
+/* ------- main ------- */
+.container {
+  background-color: yellow;
+  margin: auto;
+  padding: 20px 0;
+}
 /* ------ header ------ */
 
 
@@ -49,3 +55,13 @@ td {
   border-radius: 5px;
 }
 
+
+
+
+.show-element {
+  background-color: blue;
+}
+
+.hide-element {
+  background-color: black;
+}
