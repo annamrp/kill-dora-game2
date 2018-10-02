@@ -32,37 +32,50 @@ html, body {
 /* -------- Font --------*/
 body {
   font-family: 'Kreon', serif;
+  background-color: #B9D24B;
 }
 /* -------- Main -------- */
 main {
   text-align: center;
 }
+
 h1 {
  font-size: 4em;
- text-align: center; 
+ text-align: center;
  margin-top: 80px;
+ background: linear-gradient(green,black);
+ -webkit-background-clip: text;
+ color: transparent;  
 }
+
 p {
   font-size: 3em;
   text-align: center;
+  background: linear-gradient(green,black);
+  -webkit-background-clip: text;
+  color: transparent;  
 }
+
 button {
   margin-top: 20px;
-  background: none;
+  color: #C5EEA4; 
+  background:  linear-gradient(green,black);
   border: 1px outset;
   padding: 10px 15px;
   border-radius: 10px;
   font-family: 'Kreon', serif;
   font-size: 2em;
-  font-weight: bold;
+  font-weight: bold; 
 }
 
 /* -------- Game -------- */
 .container {
-  background-image: url('https://fotografias.antena3.com/clipping/cmsimages02/2018/05/03/E274DF1C-AC16-4B7A-A451-519D48110A9E/58.jpg');
+  background-image: url('images/dora-background.jpg');
+  background-position: center center;
   border: 5px solid #246E07; 
   cursor: url('images/cuchillo.png'),pointer; 
 }
+
 .game header {
   font-size: 2em;
   font-weight: bold;
@@ -72,11 +85,10 @@ button {
   display: flex;
   justify-content: space-between;
 }
+
 .game .score, .timer{
   padding: 0 15px;
 }
-
-/* --- game board --- */
 
 .game table {
 	width: 450px;
@@ -96,13 +108,11 @@ button {
   background-image: url('images/dora.png');
   background-size: 150px;
   background-repeat: no-repeat;
-  background-color: #FFFFFF;
   background-position: center;
 }
 
 .game .dead-dora {
-  background-image: url('images/dead-dora.jpg');
+  background-image: url('images/dead-dora.png');
   background-size: 150px;
   background-repeat: no-repeat;
-  background-color: white;
 }

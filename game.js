@@ -94,7 +94,7 @@ Game.prototype.showDora = function() {
   self.dora.cell.classList.add("show-element");
   setTimeout(function() {
     self.dora.cell.classList.remove("show-element");
-  }, 850);
+  }, 750);
 };
 
 Game.prototype.killDora = function(cell) {
@@ -106,7 +106,7 @@ Game.prototype.killDora = function(cell) {
       cell.classList.add("dead-dora")
       setTimeout(function(){
         cell.classList.remove("dead-dora");
-      },150);
+      },250);
       
       
     };
