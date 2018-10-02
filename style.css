@@ -32,10 +32,9 @@ html, body {
 
 /* ------- main ------- */
 .container {
-  background-color: yellow;
-  margin: auto;
-  padding: 20px 0;
-}
+  background-image: url('http://revistaronda.net/wp-content/uploads/2018/08/Eugenio-Derbez.jpg')
+  }
+  
 /* ------ header ------ */
 
 
@@ -60,6 +59,7 @@ td {
 
 .show-element {
   background-color: blue;
+
 }
 
 .hide-element {

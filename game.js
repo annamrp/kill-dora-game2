@@ -64,9 +64,9 @@ Game.prototype.buildBoard = function() {
       self.counter ++;
 
       self.cell.classList.add(self.counter);
-      self.image.classList.add("image");
+      //.image.classList.add("image");
 
-      self.cell.appendChild(self.image);
+      //self.cell.appendChild(self.image);
       self.row.appendChild(self.cell);
     }
     self.table.appendChild(self.row);
