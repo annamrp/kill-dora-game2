@@ -103,6 +103,11 @@ Game.prototype.killDora = function(cell) {
   if (cell.classList.contains("show-element")) {
       self.score++;
       self.scoreElement.innerText = self.score;
+      cell.classList.add("dead-dora")
+      setTimeout(function(){
+        cell.classList.remove("dead-dora");
+      },100);
+      
       
     };
 };
