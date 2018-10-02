@@ -18,6 +18,7 @@ Game.prototype.start = function() {
         <div class="score">
           <span class="label">Score: </span>
           <span class="value"></span>
+        </div>
         <div class="timer">
           <span class="label">Time:  </span>
           <span class="value"></span>
@@ -32,11 +33,11 @@ Game.prototype.start = function() {
   self.timerElement = self.gameMain.querySelector(".timer .value");
   self.button = self.gameMain.querySelector("button");
   self.boardElement = self.gameMain.querySelector(".game-board");
+  self.scoreElement.innerText = self.score;
 
   self.handleClick = function (event){
     self.killDora(event.target)
   }
-
   self.boardElement.addEventListener("click", self.handleClick);
 
   document.body.appendChild(self.gameMain);
@@ -98,6 +99,7 @@ Game.prototype.showDora = function() {
 
 Game.prototype.killDora = function(cell) {
   var self = this;
+  
   if (cell.classList.contains("show-element")) {
       self.score++;
       self.scoreElement.innerText = self.score;

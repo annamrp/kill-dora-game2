@@ -29,53 +29,76 @@ html, body {
     margin: 0 auto;
   }
 }
-
-/* ------ main game ------ */
-.container {
-  background-image: url('https://fotografias.antena3.com/clipping/cmsimages02/2018/05/03/E274DF1C-AC16-4B7A-A451-519D48110A9E/58.jpg')
-  }
-  
-
-/* ------ header ------ */
-header {
+/* -------- Font --------*/
+body {
+  font-family: 'Kreon', serif;
+}
+/* -------- Main -------- */
+main {
+  text-align: center;
+}
+h1 {
+ font-size: 4em;
+ text-align: center; 
+ margin-top: 80px;
+}
+p {
+  font-size: 3em;
+  text-align: center;
+}
+button {
+  margin-top: 20px;
+  background: none;
+  border: 1px outset;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-family: 'Kreon', serif;
   font-size: 2em;
   font-weight: bold;
-  color: white;
-
 }
 
+/* -------- Game -------- */
+.container {
+  background-image: url('https://fotografias.antena3.com/clipping/cmsimages02/2018/05/03/E274DF1C-AC16-4B7A-A451-519D48110A9E/58.jpg');
+  border: 5px solid #246E07;  
+}
+.game header {
+  font-size: 2em;
+  font-weight: bold;
+  color: #C5EEA4;
+  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; 
+  
+  display: flex;
+  justify-content: space-between;
+}
+.game .score, .timer{
+  padding: 0 15px;
+}
 
 /* --- game board --- */
-table {
+.game table {
 	width: 450px;
   height: 450px;
   margin: 0 auto;
 }
 
-td {
+.game td {
 	width: 150px;
 	height: 150px;
-	background-color: black;
-	border: 3px solid grey;
+	background-color: #101E03;
+	border: 3px solid #70716E;
   border-radius: 5px;
 }
 
-
-
-
-.show-element {
+.game .show-element {
   background-image: url('images/dora.png');
   background-size: 150px;
   background-repeat: no-repeat;
-  background-color: white;
+  background-color: #FFFFFF;
   background-position: center;
 }
 
-.hide-element {
-  background-color: black;
-}
-
-.dead-dora {
+.game .dead-dora {
   background-image: url('images/dead-dora.jpg');
   background-size: 150px;
   background-repeat: no-repeat;

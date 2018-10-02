@@ -18,7 +18,7 @@ function main(){
 
     splashMain = buildDom(`
       <main>
-        <h1>Kill Dora</h1>
+        <h1>KiLL DoRa</h1>
         <button>Start Game</button>
       <main>`);
 
