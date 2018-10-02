@@ -33,8 +33,11 @@ Game.prototype.start = function() {
   self.button = self.gameMain.querySelector("button");
   self.boardElement = self.gameMain.querySelector(".game-board");
 
-  //event listener para que reconozca los clicks
-  //self.boardElement.addEventListener("click", self.killDora);
+  self.handleClick = function (event){
+    self.killDora(event.target)
+  }
+
+  self.boardElement.addEventListener("click", self.handleClick);
 
   document.body.appendChild(self.gameMain);
 
@@ -63,9 +66,7 @@ Game.prototype.buildBoard = function() {
       self.counter++;
 
       self.cell.classList.add(self.counter);
-      //.image.classList.add("image");
 
-      //self.cell.appendChild(self.image);
       self.row.appendChild(self.cell);
     }
     self.table.appendChild(self.row);
@@ -79,42 +80,34 @@ Game.prototype.randomDora = function() {
 
   self.randomNum = Math.floor(Math.random() * self.counter + 1);
 
-  //self.randomCell = document.querySelector('.\\' + self.randomNum);
   self.randomCell = document.querySelector('[class="' + self.randomNum + '"]');
-  //self.doraImage = document.querySelector('.image');
+
   self.dora.cell = self.randomCell;
-  self.dora.cell.addEventListener('click', self.killDora);
 };
 
 Game.prototype.showDora = function() {
   var self = this;
 
   self.randomDora();
+
   self.dora.cell.classList.add("show-element");
   setTimeout(function() {
     self.dora.cell.classList.remove("show-element");
-  }, 500);
-  
-    //self.dora.cell.classList.toggle('show-element');
-  
-  self.killDora();
+  }, 800);
 };
 
-Game.prototype.killDora = function() {
+Game.prototype.killDora = function(cell) {
   var self = this;
-  
-  if (self.dora.cell.classList.contains("show-element")) {
-    self.dora.cell.onclick = function() {
+  if (cell.classList.contains("show-element")) {
       self.score++;
       self.scoreElement.innerText = self.score;
-      self.dora.cell.removeEventListener('click', self.killDora);
+      
     };
-  }
-  
 };
 
 Game.prototype.startTimer = function() {
   var self = this;
+
   self.timer = 20;
   self.timerElement.innerText = self.timer;
   self.intervalID = setInterval(function() {
