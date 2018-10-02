@@ -30,13 +30,19 @@ html, body {
   }
 }
 
-/* ------- main ------- */
+/* ------ main game ------ */
 .container {
-  background-image: url('http://revistaronda.net/wp-content/uploads/2018/08/Eugenio-Derbez.jpg')
+  background-image: url('https://fotografias.antena3.com/clipping/cmsimages02/2018/05/03/E274DF1C-AC16-4B7A-A451-519D48110A9E/58.jpg')
   }
   
-/* ------ header ------ */
 
+/* ------ header ------ */
+header {
+  font-size: 2em;
+  font-weight: bold;
+  color: white;
+
+}
 
 
 /* --- game board --- */
@@ -58,10 +64,20 @@ td {
 
 
 .show-element {
-  background-color: blue;
-
+  background-image: url('images/dora.png');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-position: center;
 }
 
 .hide-element {
   background-color: black;
+}
+
+.dead-dora {
+  background-image: url('images/dead-dora.jpg');
+  background-size: 150px;
+  background-repeat: no-repeat;
+  background-color: white;
 }

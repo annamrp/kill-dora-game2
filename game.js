@@ -34,12 +34,11 @@ Game.prototype.start = function() {
   self.boardElement = self.gameMain.querySelector(".game-board");
 
   //event listener para que reconozca los clicks
-  //self.boardElement.addEventListener('click', killDora);
+  //self.boardElement.addEventListener("click", self.killDora);
 
   document.body.appendChild(self.gameMain);
 
   self.dora = {};
-
 
   self.startTimer();
   self.buildBoard();
@@ -53,15 +52,15 @@ Game.prototype.buildBoard = function() {
 
   self.boardDiv = document.querySelector(".game-board");
   self.table = document.createElement("table");
-  
+
   self.counter = 0;
   for (self.x = 0; self.x < self.rows; self.x++) {
     self.row = document.createElement("tr");
-  
+
     for (self.y = 0; self.y < self.columns; self.y++) {
       self.cell = document.createElement("td");
       self.image = document.createElement("img");
-      self.counter ++;
+      self.counter++;
 
       self.cell.classList.add(self.counter);
       //.image.classList.add("image");
@@ -78,54 +77,41 @@ Game.prototype.buildBoard = function() {
 Game.prototype.randomDora = function() {
   var self = this;
 
-  self.randomNum = Math.floor(Math.random() * self.counter+1);
+  self.randomNum = Math.floor(Math.random() * self.counter + 1);
 
   //self.randomCell = document.querySelector('.\\' + self.randomNum);
-  self.randomCell = document.querySelector('[class="'+ self.randomNum + '"]');
-  self.doraImage = document.querySelector('.image');
+  self.randomCell = document.querySelector('[class="' + self.randomNum + '"]');
+  //self.doraImage = document.querySelector('.image');
   self.dora.cell = self.randomCell;
-  console.log(self.dora);
+  self.dora.cell.addEventListener('click', self.killDora);
 };
 
 Game.prototype.showDora = function() {
   var self = this;
 
   self.randomDora();
-  self.dora.cell.classList.add('show-element');
-  setTimeout(function(){
-    self.dora.cell.classList.remove('show-element');
-
-  },500)
-
-
-
-  /*
-    self.dora.cell.classList.toggle('show-element');
-  */
- 
- 
+  self.dora.cell.classList.add("show-element");
+  setTimeout(function() {
+    self.dora.cell.classList.remove("show-element");
+  }, 500);
   
- 
- 
- 
- 
- 
+    //self.dora.cell.classList.toggle('show-element');
   
-}
+  self.killDora();
+};
 
-
-
-/*
-  while (self.timer > 0) {
-    self.intervalID = setInterval(function() {
-    
-    }, 3000);
-    if(self.timer === 0){
-      clearInterval(intervalID);
-    }
+Game.prototype.killDora = function() {
+  var self = this;
+  
+  if (self.dora.cell.classList.contains("show-element")) {
+    self.dora.cell.onclick = function() {
+      self.score++;
+      self.scoreElement.innerText = self.score;
+      self.dora.cell.removeEventListener('click', self.killDora);
+    };
   }
-*/
-
+  
+};
 
 Game.prototype.startTimer = function() {
   var self = this;
