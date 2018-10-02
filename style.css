@@ -60,7 +60,8 @@ button {
 /* -------- Game -------- */
 .container {
   background-image: url('https://fotografias.antena3.com/clipping/cmsimages02/2018/05/03/E274DF1C-AC16-4B7A-A451-519D48110A9E/58.jpg');
-  border: 5px solid #246E07;  
+  border: 5px solid #246E07; 
+  cursor: url('images/cuchillo.png'),pointer; 
 }
 .game header {
   font-size: 2em;
@@ -76,6 +77,7 @@ button {
 }
 
 /* --- game board --- */
+
 .game table {
 	width: 450px;
   height: 450px;
