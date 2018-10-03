@@ -20,7 +20,7 @@ function main(){
       <main id="splash">
         <h1>KiLL DoRa</h1>
         <button>Start Game</button>
-      <main>`);
+      </main>`);
 
     document.body.appendChild(splashMain);
     var button = splashMain.querySelector('button');
@@ -56,7 +56,7 @@ function main(){
         <h1>Game Over</h1>
         <p>Score: <span></span></p>
         <button>Restart Game</button>
-      <main>`)
+      </main>`)
     
       document.body.appendChild(gameOverMain);
       var button = gameOverMain.querySelector('button');

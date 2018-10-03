@@ -11,13 +11,11 @@ html {
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Kreon', serif;
+
 }
 
 /* ---- layout ---- */
-
-html, body {
-  height: 100%;
-}
 
 .container {
   margin: 0 20px;
@@ -29,15 +27,13 @@ html, body {
     margin: 0 auto;
   }
 }
-/* -------- Font --------*/
-body {
-  font-family: 'Kreon', serif;
-}
+
 /* -------- Main -------- */
 main {
   text-align: center;
   width: 728px;
   height: 509px;
+  max-width: 100%;
 }
 
 h1 {
@@ -70,9 +66,6 @@ button {
 
 /* -------- Game -------- */
 .container {
-  /*background-image: url('images/dora-background.jpg');
-  background-position: center center;
-  border: 5px solid #246E07; */
   cursor: url('images/cuchillo.png'),pointer; 
 }
 
@@ -93,6 +86,7 @@ button {
 	width: 450px;
   height: 450px;
   margin: 0 auto;
+  max-width: 100%;
 }
 
 .game td {
@@ -114,6 +108,7 @@ button {
   background-image: url('images/dead-dora.png');
   background-size: 150px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 #splash, #game-over, .container {
   background-position: center center;
@@ -121,4 +116,31 @@ button {
   background-image: url('images/dora-background.jpg');
   background-repeat: no-repeat;
   margin: 0 auto;
+  margin-top: 25px;
+}
+
+@media(max-width: 400px){
+  .game header {
+    margin-top: 20px;
+  }
+  .game table {
+    width: 350px;
+    height: 350px;
+    margin-top: 20px;
+  }
+  #splash, #game-over, .container {
+    background-position: center center;
+    background-size: cover;
+    margin: 0 auto;
+    height: 100vh;
+  }
+ #game-over {
+    padding-top: 50px;
+  }
+  #splash {
+    padding-top: 125px;
+  }
+  .game .show-element, .game .dead-dora{
+    background-size: 116px;
+  }
 }
