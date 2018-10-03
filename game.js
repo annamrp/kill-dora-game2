@@ -100,10 +100,17 @@ Game.prototype.showDora = function() {
   var self = this;
 
   self.randomDora();
-  self.dora.cell.classList.add("show-element");
-  setTimeout(function() {
-    self.dora.cell.classList.remove("show-element");
-  }, 750);
+  if (self.score < 10) {
+    self.dora.cell.classList.add("show-element");
+    setTimeout(function() {
+      self.dora.cell.classList.remove("show-element");
+    }, 750);
+  } else {
+    self.dora.cell.classList.add("show-element");
+    setTimeout(function() {
+      self.dora.cell.classList.remove("show-element");
+    }, 550);
+  }
 };
 
 Game.prototype.killDora = function(cell) {
