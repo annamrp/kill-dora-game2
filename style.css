@@ -32,34 +32,34 @@ html, body {
 /* -------- Font --------*/
 body {
   font-family: 'Kreon', serif;
-  background-color: #B9D24B;
 }
 /* -------- Main -------- */
 main {
   text-align: center;
+  width: 728px;
+  height: 509px;
 }
 
 h1 {
  font-size: 4em;
  text-align: center;
  margin-top: 80px;
- background: linear-gradient(green,black);
- -webkit-background-clip: text;
- color: transparent;  
+ color: #C5EEA4;
+ text-shadow: 0 0 0.2em #5A642D, 0 0 0.2em #5A642D;   
 }
 
 p {
   font-size: 3em;
   text-align: center;
-  background: linear-gradient(green,black);
-  -webkit-background-clip: text;
-  color: transparent;  
+  color: #C5EEA4;
+  text-shadow: 0 0 0.2em #5A642D, 0 0 0.2em #5A642D;   
 }
 
 button {
   margin-top: 20px;
   color: #C5EEA4; 
-  background:  linear-gradient(green,black);
+  text-shadow: 0 0 0.2em #5A642D, 0 0 0.2em #5A642D;   
+  background:  linear-gradient( #5A642D,#C5EEA4);
   border: 1px outset;
   padding: 10px 15px;
   border-radius: 10px;
@@ -70,9 +70,9 @@ button {
 
 /* -------- Game -------- */
 .container {
-  background-image: url('images/dora-background.jpg');
+  /*background-image: url('images/dora-background.jpg');
   background-position: center center;
-  border: 5px solid #246E07; 
+  border: 5px solid #246E07; */
   cursor: url('images/cuchillo.png'),pointer; 
 }
 
@@ -81,7 +81,6 @@ button {
   font-weight: bold;
   color: #C5EEA4;
   text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; 
-  
   display: flex;
   justify-content: space-between;
 }
@@ -115,4 +114,11 @@ button {
   background-image: url('images/dead-dora.png');
   background-size: 150px;
   background-repeat: no-repeat;
+}
+#splash, #game-over, .container {
+  background-position: center center;
+  border: 5px solid #246E07; 
+  background-image: url('images/dora-background.jpg');
+  background-repeat: no-repeat;
+  margin: 0 auto;
 }

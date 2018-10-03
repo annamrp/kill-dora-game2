@@ -17,7 +17,7 @@ function main(){
    destroyGameOver();
 
     splashMain = buildDom(`
-      <main>
+      <main id="splash">
         <h1>KiLL DoRa</h1>
         <button>Start Game</button>
       <main>`);
@@ -52,7 +52,7 @@ function main(){
   
   function buidlGameOver(score){
     gameOverMain = buildDom(`
-      <main>
+      <main id="game-over">
         <h1>Game Over</h1>
         <p>Score: <span></span></p>
         <button>Restart Game</button>
