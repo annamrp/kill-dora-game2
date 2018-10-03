@@ -6,6 +6,8 @@ function Game() {
 
   self.score = 0;
   self.timer = null;
+  self.lives = 6;
+  self.mochila;
   self.onGameOverCallback = null;
 }
 
@@ -17,6 +19,10 @@ Game.prototype.start = function() {
       <header>
         <div class="score">
           <span class="label">Score: </span>
+          <span class="value"></span>
+        </div>
+        <div class="lives">
+          <span class="label">Lives:  </span>
           <span class="value"></span>
         </div>
         <div class="timer">
@@ -31,15 +37,18 @@ Game.prototype.start = function() {
 
   self.scoreElement = self.gameMain.querySelector(".score .value");
   self.timerElement = self.gameMain.querySelector(".timer .value");
+  self.livesElement = self.gameMain.querySelector(".lives .value");
+
   self.button = self.gameMain.querySelector("button");
   self.boardElement = self.gameMain.querySelector(".game-board");
   self.scoreElement.innerText = self.score;
+  self.livesElement.innerText = self.lives;
 
-  self.handleClick = function (event){
-    self.killDora(event.target)
-  }
+  self.handleClick = function(event) {
+    self.killDora(event.target);
+  };
+
   self.boardElement.addEventListener("click", self.handleClick);
-
   document.body.appendChild(self.gameMain);
 
   self.dora = {};
@@ -100,27 +109,44 @@ Game.prototype.showDora = function() {
 
 Game.prototype.killDora = function(cell) {
   var self = this;
-  
+
   if (cell.classList.contains("show-element")) {
-      self.doraScream();
-      self.score++;
-      self.scoreElement.innerText = self.score;
-      cell.classList.add("dead-dora")
-      setTimeout(function(){
-        cell.classList.remove("dead-dora");
-      },250);
-      
-      
-    };
+    self.doraScream();
+    self.score++;
+    self.scoreElement.innerText = self.score;
+    cell.classList.add("dead-dora");
+    setTimeout(function() {
+      cell.classList.remove("dead-dora");
+    }, 250);
+  } else if (!cell.classList.contains("show-element")) {
+    self.lives--;
+    self.livesElement.innerText = self.lives;
+    self.teasingSound();
+    if (self.lives === 0) {
+      self.timer = 0;
+      clearInterval(self.intervalID);
+      self.onGameOverCallback();
+      self.stopDoraSong();
+    }
+  }
 };
-Game.prototype.doraScream = function () {
-  self.scream = new Audio('./sonidos/grito_de_una_mujer.mp3')
-     self.scream.play()
-}
-Game.prototype.doraSong = function () {
-  self.mochila = new Audio('./sonidos/cancion-mochila.mp3')
-     self.mochila.play()
-}
+Game.prototype.doraScream = function() {
+  self.scream = new Audio("./sonidos/grito_de_una_mujer.mp3");
+  self.scream.play();
+};
+Game.prototype.teasingSound = function() {
+  self.teasing = new Audio("./sonidos/cajero-[AudioTrimmer.com].mp3");
+  self.teasing.play();
+};
+Game.prototype.doraSong = function() {
+  self.mochila = new Audio("./sonidos/cancion-mochila.mp3");
+  self.mochila.play();
+};
+
+Game.prototype.stopDoraSong = function() {
+  self.mochila.pause();
+};
+
 
 Game.prototype.startTimer = function() {
   var self = this;
