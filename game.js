@@ -100,7 +100,6 @@ Game.prototype.showDora = function() {
   var self = this;
 
   self.randomDora();
-
   self.dora.cell.classList.add("show-element");
   setTimeout(function() {
     self.dora.cell.classList.remove("show-element");
@@ -130,6 +129,7 @@ Game.prototype.killDora = function(cell) {
     }
   }
 };
+
 Game.prototype.doraScream = function() {
   self.scream = new Audio("./sonidos/grito_de_una_mujer.mp3");
   self.scream.play();
@@ -146,7 +146,6 @@ Game.prototype.doraSong = function() {
 Game.prototype.stopDoraSong = function() {
   self.mochila.pause();
 };
-
 
 Game.prototype.startTimer = function() {
   var self = this;

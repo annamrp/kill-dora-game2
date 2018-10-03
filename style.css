@@ -43,6 +43,9 @@ h1 {
  color: #C5EEA4;
  text-shadow: 0 0 0.2em #5A642D, 0 0 0.2em #5A642D;   
 }
+#splash h1{
+  padding-top: 50px;
+}
 
 p {
   font-size: 3em;
@@ -54,7 +57,7 @@ p {
 button {
   margin-top: 20px;
   color: #C5EEA4; 
-  text-shadow: 0 0 0.3em #5A642D, 0 0 0.3em #5A642D;   
+  text-shadow: 0 0 0.3em #303617, 0 0 0.3em #5A642D;   
   background:  linear-gradient( #5A642D,#C5EEA4);
   padding: 10px 15px;
   border-radius: 10px;
@@ -76,6 +79,7 @@ button {
   text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87; 
   display: flex;
   justify-content: space-between;
+  padding-top: 5px;
 }
 
 .game .score, .timer{
@@ -83,18 +87,18 @@ button {
 }
 
 .game table {
-	width: 450px;
-  height: 450px;
+  padding-top: 15px;
+	width: 420px;
+  height: 420px;
   margin: 0 auto;
   max-width: 100%;
 }
 
 .game td {
-	width: 150px;
-	height: 150px;
-	background-color: #101E03;
-	border: 3px solid #70716E;
-  border-radius: 5px;
+	width: 140px;
+	height: 140px;
+	background-color: rgba(255,255,255,0.4);
+  border-radius: 10px;
 }
 
 .game .show-element {
@@ -120,14 +124,7 @@ button {
 }
 
 @media(max-width: 400px){
-  .game header {
-    margin-top: 20px;
-  }
-  .game table {
-    width: 350px;
-    height: 350px;
-    margin-top: 20px;
-  }
+  
   #splash, #game-over, .container {
     background-position: center center;
     background-size: cover;
@@ -139,6 +136,20 @@ button {
   }
   #splash {
     padding-top: 125px;
+  }
+  #splash h1 {
+    margin-top: 50px;
+  }
+  #game-over h1 {
+    margin-top: 100px;
+  }
+  .game header {
+    margin-top: 20px;
+  }
+  .game table {
+    width: 350px;
+    height: 350px;
+    margin-top: 20px;
   }
   .game .show-element, .game .dead-dora{
     background-size: 116px;
