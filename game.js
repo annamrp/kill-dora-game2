@@ -135,7 +135,7 @@ Game.prototype.doraScream = function() {
   self.scream.play();
 };
 Game.prototype.teasingSound = function() {
-  self.teasing = new Audio("./sonidos/cajero-[AudioTrimmer.com].mp3");
+  self.teasing = new Audio("./sonidos/nanana.mp3");
   self.teasing.play();
 };
 Game.prototype.doraSong = function() {

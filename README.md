@@ -77,8 +77,8 @@ DOM - Debe aparecer al menos una Dora de manera aleatoria durante unos determina
 
 ### Git
 
-* [View Repo:](https://github.com/annamrp/kill-dora-game.git)
-* [View Deploy:](https://annamrp.github.io/kill-dora-game/)
+* [View Repo](https://github.com/annamrp/kill-dora-game.git)
+* [View Deploy](https://annamrp.github.io/kill-dora-game/)
 
 ### Slides
 

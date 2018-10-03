@@ -58,14 +58,14 @@ p {
 button {
   margin-top: 20px;
   color: #C5EEA4; 
-  text-shadow: 0 0 0.2em #5A642D, 0 0 0.2em #5A642D;   
+  text-shadow: 0 0 0.3em #5A642D, 0 0 0.3em #5A642D;   
   background:  linear-gradient( #5A642D,#C5EEA4);
-  border: 1px outset;
   padding: 10px 15px;
   border-radius: 10px;
   font-family: 'Kreon', serif;
   font-size: 2em;
   font-weight: bold; 
+  box-shadow: 0 0 0.2em #5A642D, 0 0 0.2em #5A642D; 
 }
 
 /* -------- Game -------- */
