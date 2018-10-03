@@ -101,6 +101,7 @@ Game.prototype.killDora = function(cell) {
   var self = this;
   
   if (cell.classList.contains("show-element")) {
+      self.audio();
       self.score++;
       self.scoreElement.innerText = self.score;
       cell.classList.add("dead-dora")
@@ -111,6 +112,10 @@ Game.prototype.killDora = function(cell) {
       
     };
 };
+Game.prototype.audio = function () {
+  self.scream = new Audio('./sonidos/grito_de_una_mujer.mp3')
+     self.scream.play()
+}
 
 Game.prototype.startTimer = function() {
   var self = this;
