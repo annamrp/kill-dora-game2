@@ -1,20 +1,18 @@
-'use strict';
+"use strict";
 
-function buildDom(html){
-  var div = document.createElement('div');
+let buildDom = html => {
+  const div = document.createElement("div");
   div.innerHTML = html;
   return div.children[0];
-}
+};
 
-function main(){
- 
-  var splashMain;
-  var gameOverMain;
-  var game;
+const main = () => {
+  let splashMain;
+  let gameOverMain;
+  let game;
 
-  function buildSplash(){
-
-   destroyGameOver();
+  const buildSplash = () => {
+    destroyGameOver();
 
     splashMain = buildDom(`
       <main id="splash">
@@ -23,55 +21,51 @@ function main(){
       </main>`);
 
     document.body.appendChild(splashMain);
-    var button = splashMain.querySelector('button');
-    button.addEventListener('click', buildGame)
-  }
+    const button = splashMain.querySelector("button");
+    button.addEventListener("click", buildGame);
+  };
 
-  function destroySplash(){
-    splashMain.remove();
-  }
+  const destroySplash = () => splashMain.remove();
+  
 
-  function buildGame(){
-    destroySplash()
+  const buildGame = () => {
+    destroySplash();
 
     game = new Game();
     game.start();
-    game.onOver(function (){
-      gameOver(game.score);
-    });
-  }
+    game.onOver(() => gameOver(game.score));
+  };
 
-  function destroyGame(){
-    game.destroy();
-  }
+  const destroyGame = () => game.destroy();
+  
 
-  function gameOver(score){
+  const gameOver = score => {
     destroyGame();
     buidlGameOver(score);
-  }
-  
-  function buidlGameOver(score){
+  };
+
+  const buidlGameOver = score => {
     gameOverMain = buildDom(`
       <main id="game-over">
         <h1>Game Over</h1>
         <p>Score: <span></span></p>
         <button>Restart Game</button>
-      </main>`)
-    
-      document.body.appendChild(gameOverMain);
-      var button = gameOverMain.querySelector('button');
-      var span = gameOverMain.querySelector('span');
-      span.innerText = score;
-      button.addEventListener('click', buildSplash); 
-  }
+      </main>`);
 
-  function destroyGameOver(){
-    if(gameOverMain){
-    gameOverMain.remove();
+    document.body.appendChild(gameOverMain);
+    const button = gameOverMain.querySelector("button");
+    const span = gameOverMain.querySelector("span");
+    span.innerText = score;
+    button.addEventListener("click", buildSplash);
+  };
+
+  const destroyGameOver = () => {
+    if (gameOverMain) {
+      gameOverMain.remove();
     }
-  }
- 
-  buildSplash();
-}
+  };
 
-window.addEventListener('load', main);
+  buildSplash();
+};
+
+window.addEventListener("load", main);

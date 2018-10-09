@@ -1,20 +1,16 @@
 "use strict";
 
-//constructor del juego
-function Game() {
-  var self = this;
+class Game {
+  constructor() {
+    this.score = 0;
+    this.timer = null;
+    this.lives = 6;
+    this.mochila;
+    this.onGameOverCallback = null;
+  }
 
-  self.score = 0;
-  self.timer = null;
-  self.lives = 6;
-  self.mochila;
-  self.onGameOverCallback = null;
-}
-
-Game.prototype.start = function() {
-  var self = this;
-
-  self.gameMain = buildDom(`
+  start() {
+    this.gameMain = buildDom(`
     <main class="game container">
       <header>
         <div class="score">
@@ -35,149 +31,132 @@ Game.prototype.start = function() {
     </main>
   `);
 
-  self.scoreElement = self.gameMain.querySelector(".score .value");
-  self.timerElement = self.gameMain.querySelector(".timer .value");
-  self.livesElement = self.gameMain.querySelector(".lives .value");
+    this.scoreElement = this.gameMain.querySelector(".score .value");
+    this.timerElement = this.gameMain.querySelector(".timer .value");
+    this.livesElement = this.gameMain.querySelector(".lives .value");
 
-  self.button = self.gameMain.querySelector("button");
-  self.boardElement = self.gameMain.querySelector(".game-board");
-  self.scoreElement.innerText = self.score;
-  self.livesElement.innerText = self.lives;
+    this.button = this.gameMain.querySelector("button");
+    this.boardElement = this.gameMain.querySelector(".game-board");
+    this.scoreElement.innerText = this.score;
+    this.livesElement.innerText = this.lives;
 
-  self.handleClick = function(event) {
-    self.killDora(event.target);
-  };
+    this.handleClick = event => this.killDora(event.target);
 
-  self.boardElement.addEventListener("click", self.handleClick);
-  document.body.appendChild(self.gameMain);
+    this.boardElement.addEventListener("click", this.handleClick);
+    document.body.appendChild(this.gameMain);
 
-  self.dora = {};
+    this.dora = {};
 
-  self.startTimer();
-  self.buildBoard();
-  self.doraSong();
-};
-
-Game.prototype.buildBoard = function() {
-  var self = this;
-
-  self.rows = 3;
-  self.columns = 3;
-
-  self.boardDiv = document.querySelector(".game-board");
-  self.table = document.createElement("table");
-
-  self.counter = 0;
-  for (self.x = 0; self.x < self.rows; self.x++) {
-    self.row = document.createElement("tr");
-
-    for (self.y = 0; self.y < self.columns; self.y++) {
-      self.cell = document.createElement("td");
-      self.image = document.createElement("img");
-      self.counter++;
-
-      self.cell.classList.add(self.counter);
-
-      self.row.appendChild(self.cell);
-    }
-    self.table.appendChild(self.row);
+    this.startTimer();
+    this.buildBoard();
+    this.doraSong();
   }
 
-  self.boardDiv.appendChild(self.table);
-};
+  buildBoard() {
+    this.rows = 3;
+    this.columns = 3;
 
-Game.prototype.randomDora = function() {
-  var self = this;
+    this.boardDiv = document.querySelector(".game-board");
+    this.table = document.createElement("table");
 
-  self.randomNum = Math.floor(Math.random() * self.counter + 1);
+    this.counter = 0;
+    for (this.x = 0; this.x < this.rows; this.x++) {
+      this.row = document.createElement("tr");
 
-  self.randomCell = document.querySelector('[class="' + self.randomNum + '"]');
+      for (this.y = 0; this.y < this.columns; this.y++) {
+        this.cell = document.createElement("td");
+        this.image = document.createElement("img");
+        this.counter++;
 
-  self.dora.cell = self.randomCell;
-};
+        this.cell.classList.add(this.counter);
 
-Game.prototype.showDora = function() {
-  var self = this;
+        this.row.appendChild(this.cell);
+      }
+      this.table.appendChild(this.row);
+    }
 
-  self.randomDora();
-  if (self.score < 10) {
-    self.dora.cell.classList.add("show-element");
-    setTimeout(function() {
-      self.dora.cell.classList.remove("show-element");
-    }, 750);
-  } else {
-    self.dora.cell.classList.add("show-element");
-    setTimeout(function() {
-      self.dora.cell.classList.remove("show-element");
-    }, 550);
+    this.boardDiv.appendChild(this.table);
   }
-};
 
-Game.prototype.killDora = function(cell) {
-  var self = this;
+  randomDora() {
+    this.randomNum = Math.floor(Math.random() * this.counter + 1);
 
-  if (cell.classList.contains("show-element")) {
-    self.doraScream();
-    self.score++;
-    self.scoreElement.innerText = self.score;
-    cell.classList.add("dead-dora");
-    setTimeout(function() {
-      cell.classList.remove("dead-dora");
-    }, 250);
-  } else if (!cell.classList.contains("show-element")) {
-    self.lives--;
-    self.livesElement.innerText = self.lives;
-    self.teasingSound();
-    if (self.lives === 0) {
-      self.timer = 0;
-      clearInterval(self.intervalID);
-      self.onGameOverCallback();
-      self.stopDoraSong();
+    this.randomCell = document.querySelector('[class="' + this.randomNum + '"]' );
+     
+    this.dora.cell = this.randomCell;
+  }
+
+  showDora() {
+
+    this.randomDora();
+
+    if (this.score < 10) {
+      this.dora.cell.classList.add("show-element");
+      setTimeout(() => this.dora.cell.classList.remove("show-element"), 750);
+    } else {
+      this.dora.cell.classList.add("show-element");
+      setTimeout(() => this.dora.cell.classList.remove("show-element"), 550);
     }
   }
-};
 
-Game.prototype.doraScream = function() {
-  self.scream = new Audio("./sonidos/grito_de_una_mujer.mp3");
-  self.scream.play();
-};
-Game.prototype.teasingSound = function() {
-  self.teasing = new Audio("./sonidos/nanana.mp3");
-  self.teasing.play();
-};
-Game.prototype.doraSong = function() {
-  self.mochila = new Audio("./sonidos/cancion-mochila.mp3");
-  self.mochila.play();
-};
-
-Game.prototype.stopDoraSong = function() {
-  self.mochila.pause();
-};
-
-Game.prototype.startTimer = function() {
-  var self = this;
-
-  self.timer = 20;
-  self.timerElement.innerText = self.timer;
-  self.intervalID = setInterval(function() {
-    self.timer--;
-    self.timerElement.innerText = self.timer;
-    self.showDora();
-    if (self.timer === 0) {
-      clearInterval(self.intervalID);
-      self.onGameOverCallback();
+  killDora(cell) {
+    if (cell.classList.contains("show-element")) {
+      this.doraScream();
+      this.score++;
+      this.scoreElement.innerText = this.score;
+      cell.classList.add("dead-dora");
+      setTimeout(() => cell.classList.remove("dead-dora"), 250);
+    } else if (!cell.classList.contains("show-element")) {
+      this.lives--;
+      this.livesElement.innerText = this.lives;
+      this.teasingSound();
+      if (this.lives === 0) {
+        this.timer = 0;
+        clearInterval(this.intervalID);
+        this.onGameOverCallback();
+        this.stopDoraSong();
+      }
     }
-  }, 1000);
-};
+  }
 
-Game.prototype.onOver = function(callback) {
-  var self = this;
+  doraScream() {
+    this.scream = new Audio("./sonidos/grito_de_una_mujer.mp3");
+    this.scream.play();
+  }
 
-  self.onGameOverCallback = callback;
-};
+  teasingSound() {
+    this.teasing = new Audio("./sonidos/nanana.mp3");
+    this.teasing.play();
+  }
 
-Game.prototype.destroy = function() {
-  var self = this;
+  doraSong() {
+    this.mochila = new Audio("./sonidos/cancion-mochila.mp3");
+    this.mochila.play();
+  }
 
-  self.gameMain.remove();
-};
+  stopDoraSong() {
+    this.mochila.pause();
+  }
+
+  startTimer() {
+    this.timer = 20;
+    this.timerElement.innerText = this.timer;
+    this.intervalID = setInterval(() => {
+      this.timer--;
+      this.timerElement.innerText = this.timer;
+      this.showDora();
+      if (this.timer === 0) {
+        clearInterval(this.intervalID);
+        this.onGameOverCallback();
+      }
+    }, 1000);
+  }
+
+  onOver(callback) {
+    this.onGameOverCallback = callback;
+  }
+
+  destroy() {
+    this.gameMain.remove();
+  }
+}
